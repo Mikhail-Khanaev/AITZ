@@ -181,6 +181,10 @@ body {
   }
 }
 
+.padding {
+  padding: 56px 0;
+}
+
 .intro {
   margin-top: 188px;
   position: relative;
@@ -607,6 +611,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease 0s;
+}
+._header-scroll .menu__body {
+  min-height: 40px;
 }
 @media (max-width: 47.99875em) {
   .menu__body {
@@ -980,6 +988,11 @@ html.touch .menu__list > li.active .menu__sub-list-wrap {
     max-width: 250px;
   }
 }
+@media (max-width: 47.99875em) {
+  .info-footer__links {
+    text-align: center;
+  }
+}
 .info-footer__list li {
   line-height: 1.1666666667;
   letter-spacing: -0.01em;
@@ -1073,6 +1086,11 @@ html.touch .menu__list > li.active .menu__sub-list-wrap {
 .contacts-footer__site {
   transition-delay: 0.4s;
 }
+@media (max-width: 47.99875em) {
+  .contacts-footer {
+    text-align: center;
+  }
+}
 
 .intro__title-color {
   color: #25529f;
@@ -1094,4 +1112,79 @@ html.touch .menu__list > li.active .menu__sub-list-wrap {
   font-size: 1.125rem;
   line-height: 1.3888888889;
   max-width: 588px;
+}
+@media (max-width: 47.99875em) {
+  .description__body {
+    text-align: center;
+  }
+}
+
+.mission {
+  position: relative;
+  color: #f9f9f9;
+}
+.mission__body {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+}
+.mission__content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  padding-top: 103px;
+  padding-bottom: 93px;
+  padding-right: 98px;
+}
+@media (min-width: 47.99875em) {
+  .mission__content {
+    justify-content: flex-end;
+  }
+}
+@media (max-width: 47.99875em) {
+  .mission__content {
+    text-align: center;
+    padding: 30px;
+  }
+}
+.mission__content-inner {
+  flex: 0 1 384px;
+}
+.mission__title {
+  font-weight: 500;
+  font-size: 3rem;
+  line-height: 1.1875;
+}
+.mission__text {
+  margin-top: 4px;
+  font-size: 1.125rem;
+  line-height: 140%;
+}
+
+.background-mission {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  z-index: 5;
+}
+.background-mission__wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #454655;
+  opacity: 0.35;
+  z-index: 2;
+}
+.background-mission__image img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  object-fit: cover;
 }

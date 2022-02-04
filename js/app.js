@@ -539,7 +539,9 @@
     if (document.querySelector(".top-header__close")) buttonClose.addEventListener("click", (function() {
         if (!document.querySelector(".top-header").classList.contains("active")) {
             document.querySelector(".top-header").classList.add("active");
-            document.querySelector(".intro").classList.add("active");
+            if (document.querySelector(".intro")) document.querySelector(".intro").classList.add("active");
+            if (document.querySelector(".sub-header")) document.querySelector(".sub-header").classList.add("active");
+            document.documentElement.classList.add("wasClose");
             setTimeout((function() {
                 document.querySelector(".top-header").classList.add("hide");
             }), 500);

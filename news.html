@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20220204184006">
+	<link rel="stylesheet" href="css/style.min.css?_v=20220205010759">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,7 +48,7 @@
 								<button type="button" class="search-header__button"></button>
 								<input autocomplete="off" type="text" name="form[]" placeholder="Поиск" class="search-header__input">
 							</form>
-							<a class="info-header__link" href="#">
+							<a class="info-header__link" href="#" data-popup=#enter>
 								<img src="img/iconfont/profile.svg" alt="Иконка личного кабинета">
 							</a>
 						</div>
@@ -103,7 +103,7 @@
 										<a href="#" class="menu__link menu__link-arr">Медиа</a>
 										<div class="menu__sub-list-wrap">
 											<ul class="menu__sub-list">
-												<li><a href="" class="menu__sub-link">Новости Ассоциации</a></li>
+												<li><a href="all-news.html" class="menu__sub-link">Новости Ассоциации</a></li>
 												<li><a href="" class="menu__sub-link">СМИ о нас</a></li>
 												<li><a href="" class="menu__sub-link">Новости компаний</a></li>
 											</ul>
@@ -159,7 +159,9 @@
 						<h3 class="subtitle-main">Ассоциация индустрии товаров для здоровья и Союз «Национальная
 							фармацевтическая палата» подписали меморандум о взаимопонимании.
 						</h3>
-						<time>3 декабря 2021г.</time>
+						<p class="article__data">
+							<time>3 декабря 2021г.</time>
+						</p>
 						<div class="acticle__text">
 							<p>
 								9 декабря 2021 г. Ассоциация индустрии товаров для здоровья и Союз «Национальная
@@ -205,12 +207,12 @@
 							</p>
 						</div>
 
-						<a href="" class="acticle__back">к новостям</a>
+						<a href="all-news.html" class="acticle__back">к новостям</a>
 					</article>
 				</div>
 
 			</section>
-			<div class="copyright">
+			<div data-watch data-watch-once class="copyright anim-move-bottom">
 				При использовании материалов сайта ссылка обязательна
 			</div>
 		</main>
@@ -265,19 +267,17 @@
 			</div>
 		</footer>
 	</div>
-	<!-- 
-<div id="popup" aria-hidden="true" class="popup">
-	<div class="popup__wrapper">
-		<div class="popup__content">
-			<button data-close type="button" class="popup__close">Закрыть</button>
-			<div class="popup__text">
+	<div id="enter" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">Закрыть</button>
+				<div class="popup__text">
+					fff
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
- -->
-
-	<script src="js/app.min.js?_v=20220204184006"></script>
+	<script src="js/app.min.js?_v=20220205010759"></script>
 </body>
 
 </html>

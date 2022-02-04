@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20220204184006">
+	<link rel="stylesheet" href="css/style.min.css?_v=20220205010759">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,7 +48,7 @@
 								<button type="button" class="search-header__button"></button>
 								<input autocomplete="off" type="text" name="form[]" placeholder="Поиск" class="search-header__input">
 							</form>
-							<a class="info-header__link" href="#">
+							<a class="info-header__link" href="#" data-popup=#enter>
 								<img src="img/iconfont/profile.svg" alt="Иконка личного кабинета">
 							</a>
 						</div>
@@ -103,7 +103,7 @@
 										<a href="#" class="menu__link menu__link-arr">Медиа</a>
 										<div class="menu__sub-list-wrap">
 											<ul class="menu__sub-list">
-												<li><a href="" class="menu__sub-link">Новости Ассоциации</a></li>
+												<li><a href="all-news.html" class="menu__sub-link">Новости Ассоциации</a></li>
 												<li><a href="" class="menu__sub-link">СМИ о нас</a></li>
 												<li><a href="" class="menu__sub-link">Новости компаний</a></li>
 											</ul>
@@ -139,7 +139,6 @@
 					</ul>
 				</div>
 			</div>
-
 			<div data-watch data-watch-once class="intro">
 				<div class="intro__container">
 					<div class="intro__body">
@@ -149,7 +148,82 @@
 					</div>
 				</div>
 			</div>
+			<section class="how-to-join padding">
+				<div class="how-to-join__container">
+					<h2 data-watch data-watch-once class="title-main anim-move">Как вступить</h2>
 
+					<p data-watch data-watch-once class="how-to-join__text anim-move-right">
+						Ассоциация открыта для вступления в нее новых членов. Членами Ассоциации могут быть юридические
+						лица, разделяющие цели и
+						принципы Ассоциации, соответствующие требованиям Устава и Положения о порядке приема в члены
+						Ассоциации и исключения из
+						числа ее членов.
+					</p>
+				</div>
+			</section>
+			<section class="how-to-join-stages">
+				<div class="how-to-join__container">
+					<h2 data-watch data-watch-once class="title-main anim-move">Этапы:</h2>
+
+					<ol class="how-to-join-stages__list">
+						<li data-watch data-watch-once class="stages-list__item stages-list__item-1 anim-move">
+							Направление
+							заявления и пакета сопроводительных документов;</li>
+						<li data-watch data-watch-once class="stages-list__item stages-list__item-2 anim-move">
+							Рассмотрение
+							заявления Исполнительным директором и вынесение на
+							голосование на Общем
+							собрании;</li>
+						<li data-watch data-watch-once class="stages-list__item stages-list__item-3 anim-move">Принятие
+							решения
+							Общим собранием;</li>
+						<li data-watch data-watch-once class="stages-list__item stages-list__item-4 anim-move">Оплата
+							вступительного взноса;</li>
+					</ol>
+				</div>
+			</section>
+			<section class="how-to-join-documents padding">
+				<div class="how-to-join__container">
+
+					<div class="documents">
+						<div class="documents__body">
+							<h3 data-watch data-watch-once class="documents__title title-main anim-move-top">Документы
+							</h3>
+							<ul class="documents__list">
+								<li data-watch data-watch-once class="documents__item anim-move-right">
+									<a href="№" class="documents__link">Устав АИТЗ на русском языке</a>
+								</li>
+								<li data-watch data-watch-once class="documents__item anim-move-right">
+									<a href="№" class="documents__link">Устав АИТЗ на английском языке</a>
+								</li>
+								<li data-watch data-watch-once class="documents__item anim-move-right">
+									<a href="№" class="documents__link">Документы для вступления</a>
+								</li>
+								<li data-watch data-watch-once class="documents__item anim-move-right">
+									<a href="№" class="documents__link">Заявление кандидата</a>
+								</li>
+								<li data-watch data-watch-once class="documents__item anim-move-right">
+									<a href="№" class="documents__link">Гарантийное письмо на оплату взноса</a>
+								</li>
+								<li data-watch data-watch-once class="documents__item anim-move-right">
+									<a href="№" class="documents__link">Политика в отношении обработки и защиты
+										персональных данных</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+			</section>
+			<section class="how-to-join-info">
+				<div class="how-to-join__container">
+					<div data-watch data-watch-once class="how-to-join-info__body anim-move-bottom">
+						Чтобы получить актуальную информацию о размере членских взносов и подать заявку на вступление,
+						отправьте сообщение на
+						адрес <a href="mailto:info@aitz.ru">info@aitz.ru</a>
+					</div>
+				</div>
+			</section>
 		</main>
 		<footer class="footer">
 			<div class="footer__container">
@@ -202,19 +276,17 @@
 			</div>
 		</footer>
 	</div>
-	<!-- 
-<div id="popup" aria-hidden="true" class="popup">
-	<div class="popup__wrapper">
-		<div class="popup__content">
-			<button data-close type="button" class="popup__close">Закрыть</button>
-			<div class="popup__text">
+	<div id="enter" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">Закрыть</button>
+				<div class="popup__text">
+					fff
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
- -->
-
-	<script src="js/app.min.js?_v=20220204184006"></script>
+	<script src="js/app.min.js?_v=20220205010759"></script>
 </body>
 
 </html>

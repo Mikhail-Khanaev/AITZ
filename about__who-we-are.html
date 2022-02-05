@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20220205010759">
+	<link rel="stylesheet" href="css/style.min.css?_v=20220205061234">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
 
 <body>
 	<div class="wrapper">
-		<header data-watch data-watch-once class="header anim-appearance-fast">
+		<header data-lp data-watch data-watch-once class="header anim-appearance-fast">
 			<div class="header__top top-header">
 				<div class="top-header__container">
 
@@ -39,18 +39,19 @@
 						</a>
 
 						<div class="middle-header__info info-header">
-							<button type="button" class="menu__icon icon-menu"><span></span></button>
 							<div class="info-header__language">
 								<a href="#" class="language-active">ru</a>
 								<a href="#">en</a>
 							</div>
-							<form data-da=".header-search__tel-body,570,1" action="#" class="info-header__search search-header">
+							<form data-da=".header-search__tel-body,768,1" action="#" class="info-header__search search-header">
 								<button type="button" class="search-header__button"></button>
 								<input autocomplete="off" type="text" name="form[]" placeholder="Поиск" class="search-header__input">
 							</form>
 							<a class="info-header__link" href="#" data-popup=#enter>
 								<img src="img/iconfont/profile.svg" alt="Иконка личного кабинета">
 							</a>
+							<button type="button" class="menu__icon icon-menu"><span></span></button>
+
 						</div>
 					</div>
 
@@ -82,7 +83,7 @@
 														работаем</a>
 												</li>
 												<li><a href="" class="menu__sub-link">Комитеты</a></li>
-												<li><a href="" class="menu__sub-link">Наши члены</a></li>
+												<li><a href="participants-1.html" class="menu__sub-link">Наши члены</a></li>
 												<li><a href="" class="menu__sub-link">Наши партнеры</a></li>
 											</ul>
 										</div>
@@ -105,12 +106,13 @@
 											<ul class="menu__sub-list">
 												<li><a href="all-news.html" class="menu__sub-link">Новости Ассоциации</a></li>
 												<li><a href="" class="menu__sub-link">СМИ о нас</a></li>
-												<li><a href="" class="menu__sub-link">Новости компаний</a></li>
+												<li><a href="all-news.html" class="menu__sub-link">Новости компаний</a></li>
 											</ul>
 										</div>
 									</li>
 									<li class="menu__item"><a href="" class="menu__link">Проекты и мероприятия</a></li>
-									<li class="menu__item"><a href="" class="menu__link">Что такое ответственное отношение к
+									<li class="menu__item"><a href="self-care.html" class="menu__link">Что такое ответственное
+											отношение к
 											здоровью</a></li>
 									<li class="menu__item"><a href="about__contacts.html" class="menu__link">Контакты</a></li>
 								</ul>
@@ -298,14 +300,34 @@
 	<div id="enter" aria-hidden="true" class="popup">
 		<div class="popup__wrapper">
 			<div class="popup__content">
-				<button data-close type="button" class="popup__close">Закрыть</button>
 				<div class="popup__text">
-					fff
+					<button data-close type="button" class="popup__close"></button>
+
+					<h2 class="enter__title">Добро пожаловать!</h2>
+					<form data-dev class="form" action="#">
+
+						<div class="form__line enter__line-email">
+							<div class="input__tip">Адрес электронной почты</div>
+							<input data-error="Введен не верный E-mail" data-required="email" autocomplete="off" type="email" name="form[]" class="enter__input enter__input-email">
+						</div>
+
+						<div class="form__line enter__line-password">
+							<div class="input__tip">Адрес электронной почты</div>
+							<input autocomplete="off" data-error="Неверный пароль" data-required type="password" name="form[]" value="" class="enter__input enter__input-password">
+							<button class="enter__button-show form__viewpass" type="button"></button>
+						</div>
+
+						<button type="submit" class="enter__button button">Войти</button>
+					</form>
+
+					<a href="#" class="enter__registration">
+						<span>Регистрация</span> для новых Членов Ассоциации
+					</a>
 				</div>
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20220205010759"></script>
+	<script src="js/app.min.js?_v=20220205061234"></script>
 </body>
 
 </html>

@@ -46,7 +46,7 @@
             }
         } else document.documentElement.classList.add("pc");
     }
-    function functions_getHash() {
+    function getHash() {
         if (location.hash) return location.hash.replace("#", "");
     }
     function setHash(hash) {
@@ -243,7 +243,7 @@
         const tabs = document.querySelectorAll("[data-tabs]");
         let tabsActiveHash = [];
         if (tabs.length > 0) {
-            const hash = functions_getHash();
+            const hash = getHash();
             if (hash && hash.startsWith("tab-")) tabsActiveHash = hash.replace("tab-", "").split("-");
             tabs.forEach(((tabsBlock, index) => {
                 tabsBlock.classList.add("_tab-init");
@@ -636,7 +636,7 @@
         }
     }
     flsModules.popup = new Popup({});
-    let gotoblock_gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 0) => {
+    let gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 0) => {
         const targetBlockElement = document.querySelector(targetBlock);
         if (targetBlockElement) {
             let headerItem = "";
@@ -812,7 +812,7 @@
             } else {
                 e.preventDefault();
                 const formError = form.querySelector("._form-error");
-                if (formError && form.hasAttribute("data-goto-error")) gotoblock_gotoBlock(formError, true, 1e3);
+                if (formError && form.hasAttribute("data-goto-error")) gotoBlock(formError, true, 1e3);
             }
         }
         function formSent(form) {
@@ -1148,101 +1148,45 @@
         }
     }
     flsModules.select = new SelectConstructor({});
-    class ScrollWatcher {
-        constructor(props) {
-            let defaultConfig = {
-                logging: true
-            };
-            this.config = Object.assign(defaultConfig, props);
-            this.observer;
-            !document.documentElement.classList.contains("watcher") ? this.scrollWatcherRun() : null;
-        }
-        scrollWatcherUpdate() {
-            this.scrollWatcherRun();
-        }
-        scrollWatcherRun() {
-            document.documentElement.classList.add("watcher");
-            this.scrollWatcherConstructor(document.querySelectorAll("[data-watch]"));
-        }
-        scrollWatcherConstructor(items) {
-            if (items.length) {
-                this.scrollWatcherLogging(`Проснулся, слежу за объектами (${items.length})...`);
-                let uniqParams = uniqArray(Array.from(items).map((function(item) {
-                    return `${item.dataset.watchRoot ? item.dataset.watchRoot : null}|${item.dataset.watchMargin ? item.dataset.watchMargin : "0px"}|${item.dataset.watchThreshold ? item.dataset.watchThreshold : 0}`;
-                })));
-                uniqParams.forEach((uniqParam => {
-                    let uniqParamArray = uniqParam.split("|");
-                    let paramsWatch = {
-                        root: uniqParamArray[0],
-                        margin: uniqParamArray[1],
-                        threshold: uniqParamArray[2]
-                    };
-                    let groupItems = Array.from(items).filter((function(item) {
-                        let watchRoot = item.dataset.watchRoot ? item.dataset.watchRoot : null;
-                        let watchMargin = item.dataset.watchMargin ? item.dataset.watchMargin : "0px";
-                        let watchThreshold = item.dataset.watchThreshold ? item.dataset.watchThreshold : 0;
-                        if (String(watchRoot) === paramsWatch.root && String(watchMargin) === paramsWatch.margin && String(watchThreshold) === paramsWatch.threshold) return item;
-                    }));
-                    let configWatcher = this.getScrollWatcherConfig(paramsWatch);
-                    this.scrollWatcherInit(groupItems, configWatcher);
-                }));
-            } else this.scrollWatcherLogging("Сплю, нет объектов для слежения. ZzzZZzz");
-        }
-        getScrollWatcherConfig(paramsWatch) {
-            let configWatcher = {};
-            if (document.querySelector(paramsWatch.root)) configWatcher.root = document.querySelector(paramsWatch.root); else if ("null" !== paramsWatch.root) this.scrollWatcherLogging(`Эмм... родительского объекта ${paramsWatch.root} нет на странице`);
-            configWatcher.rootMargin = paramsWatch.margin;
-            if (paramsWatch.margin.indexOf("px") < 0 && paramsWatch.margin.indexOf("%") < 0) {
-                this.scrollWatcherLogging(`Ой ой, настройку data-watch-margin нужно задавать в PX или %`);
-                return;
-            }
-            if ("prx" === paramsWatch.threshold) {
-                paramsWatch.threshold = [];
-                for (let i = 0; i <= 1; i += .005) paramsWatch.threshold.push(i);
-            } else paramsWatch.threshold = paramsWatch.threshold.split(",");
-            configWatcher.threshold = paramsWatch.threshold;
-            return configWatcher;
-        }
-        scrollWatcherCreate(configWatcher) {
-            this.observer = new IntersectionObserver(((entries, observer) => {
-                entries.forEach((entry => {
-                    this.scrollWatcherCallback(entry, observer);
-                }));
-            }), configWatcher);
-        }
-        scrollWatcherInit(items, configWatcher) {
-            this.scrollWatcherCreate(configWatcher);
-            items.forEach((item => this.observer.observe(item)));
-        }
-        scrollWatcherIntersecting(entry, targetElement) {
-            if (entry.isIntersecting) {
-                !targetElement.classList.contains("_watcher-view") ? targetElement.classList.add("_watcher-view") : null;
-                this.scrollWatcherLogging(`Я вижу ${targetElement.classList}, добавил класс _watcher-view`);
-            } else {
-                targetElement.classList.contains("_watcher-view") ? targetElement.classList.remove("_watcher-view") : null;
-                this.scrollWatcherLogging(`Я не вижу ${targetElement.classList}, убрал класс _watcher-view`);
-            }
-        }
-        scrollWatcherOff(targetElement, observer) {
-            observer.unobserve(targetElement);
-            this.scrollWatcherLogging(`Я перестал следить за ${targetElement.classList}`);
-        }
-        scrollWatcherLogging(message) {
-            this.config.logging ? FLS(`[Наблюдатель]: ${message}`) : null;
-        }
-        scrollWatcherCallback(entry, observer) {
-            const targetElement = entry.target;
-            this.scrollWatcherIntersecting(entry, targetElement);
-            targetElement.hasAttribute("data-watch-once") && entry.isIntersecting ? this.scrollWatcherOff(targetElement, observer) : null;
-            document.dispatchEvent(new CustomEvent("watcherCallback", {
-                detail: {
-                    entry
+    let addWindowScrollEvent = false;
+    function pageNavigation() {
+        document.addEventListener("click", pageNavigationAction);
+        document.addEventListener("watcherCallback", pageNavigationAction);
+        function pageNavigationAction(e) {
+            if ("click" === e.type) {
+                const targetElement = e.target;
+                if (targetElement.closest("[data-goto]")) {
+                    const gotoLink = targetElement.closest("[data-goto]");
+                    const gotoLinkSelector = gotoLink.dataset.goto ? gotoLink.dataset.goto : "";
+                    const noHeader = gotoLink.hasAttribute("data-goto-header") ? true : false;
+                    const gotoSpeed = gotoLink.dataset.gotoSpeed ? gotoLink.dataset.gotoSpeed : 500;
+                    const offsetTop = gotoLink.dataset.gotoTop ? parseInt(gotoLink.dataset.gotoTop) : 0;
+                    gotoBlock(gotoLinkSelector, noHeader, gotoSpeed, offsetTop);
+                    e.preventDefault();
                 }
-            }));
+            } else if ("watcherCallback" === e.type && e.detail) {
+                const entry = e.detail.entry;
+                const targetElement = entry.target;
+                if ("navigator" === targetElement.dataset.watch) {
+                    document.querySelector(`[data-goto]._navigator-active`);
+                    let navigatorCurrentItem;
+                    if (targetElement.id && document.querySelector(`[data-goto="#${targetElement.id}"]`)) navigatorCurrentItem = document.querySelector(`[data-goto="#${targetElement.id}"]`); else if (targetElement.classList.length) for (let index = 0; index < targetElement.classList.length; index++) {
+                        const element = targetElement.classList[index];
+                        if (document.querySelector(`[data-goto=".${element}"]`)) {
+                            navigatorCurrentItem = document.querySelector(`[data-goto=".${element}"]`);
+                            break;
+                        }
+                    }
+                    if (entry.isIntersecting) navigatorCurrentItem ? navigatorCurrentItem.classList.add("_navigator-active") : null; else navigatorCurrentItem ? navigatorCurrentItem.classList.remove("_navigator-active") : null;
+                }
+            }
+        }
+        if (getHash()) {
+            let goToHash;
+            if (document.querySelector(`#${getHash()}`)) goToHash = `#${getHash()}`; else if (document.querySelector(`.${getHash()}`)) goToHash = `.${getHash()}`;
+            goToHash ? gotoBlock(goToHash, true, 500, 20) : null;
         }
     }
-    flsModules.watcher = new ScrollWatcher({});
-    let addWindowScrollEvent = false;
     function headerScroll() {
         addWindowScrollEvent = true;
         const header = document.querySelector("header.header");
@@ -1391,6 +1335,25 @@
         searchIcon.classList.toggle("active");
         searchInput.classList.toggle("active");
     }));
+    var timer = 4e3;
+    var i = 0;
+    var max = $("#c > li").length;
+    $("#c > li").eq(i).addClass("active").css("left", "0");
+    $("#c > li").eq(i + 1).addClass("active").css("left", "25%");
+    $("#c > li").eq(i + 2).addClass("active").css("left", "50%");
+    $("#c > li").eq(i + 3).addClass("active").css("left", "75%");
+    setInterval((function() {
+        $("#c > li").removeClass("active");
+        $("#c > li").eq(i).css("transition-delay", "0.25s");
+        $("#c > li").eq(i + 1).css("transition-delay", "0.5s");
+        $("#c > li").eq(i + 2).css("transition-delay", "0.75s");
+        $("#c > li").eq(i + 3).css("transition-delay", "1s");
+        if (i < max - 4) i += 4; else i = 0;
+        $("#c > li").eq(i).css("left", "0").addClass("active").css("transition-delay", "1.25s");
+        $("#c > li").eq(i + 1).css("left", "25%").addClass("active").css("transition-delay", "1.5s");
+        $("#c > li").eq(i + 2).css("left", "50%").addClass("active").css("transition-delay", "1.75s");
+        $("#c > li").eq(i + 3).css("left", "75%").addClass("active").css("transition-delay", "2s");
+    }), timer);
     window["FLS"] = true;
     isWebp();
     addTouchClass();
@@ -1402,5 +1365,6 @@
         viewPass: true
     });
     formSubmit();
+    pageNavigation();
     headerScroll();
 })();

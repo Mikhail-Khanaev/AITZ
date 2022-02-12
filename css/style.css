@@ -575,11 +575,12 @@ body::after {
 }
 .card__image {
   overflow: hidden;
+  flex: 0 0 190px;
+  width: 100%;
 }
 .card__image img {
   width: 100%;
   height: 100%;
-  max-width: 125px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -832,62 +833,6 @@ body::after {
   margin-top: 10px;
 }
 
-.anim-appearance {
-  opacity: 0;
-  transition: opacity 3s ease 0s;
-}
-.anim-appearance._watcher-view {
-  opacity: 1;
-}
-
-.anim-appearance-fast {
-  opacity: 0;
-  transition: opacity 1.5s ease 0s;
-}
-.anim-appearance-fast._watcher-view {
-  opacity: 1;
-}
-
-.anim-move {
-  transform: translate(-100%, 0px);
-  opacity: 0;
-  transition: transform 0.6s ease 0s, opacity 0.6s ease 0s;
-}
-.anim-move._watcher-view {
-  opacity: 1;
-  transform: translate(0px, 0px);
-}
-
-.anim-move-right {
-  transform: translate(100%, 0px);
-  opacity: 0;
-  transition: transform 0.6s ease 0s, opacity 0.6s ease 0s;
-}
-.anim-move-right._watcher-view {
-  opacity: 1;
-  transform: translate(0px, 0px);
-}
-
-.anim-move-bottom {
-  transform: translate(0, 100%);
-  opacity: 0;
-  transition: transform 0.6s ease 0s, opacity 1.6s ease 0s;
-}
-.anim-move-bottom._watcher-view {
-  opacity: 1;
-  transform: translate(0px, 0px);
-}
-
-.anim-move-top {
-  transform: translate(0, -100%);
-  opacity: 0;
-  transition: transform 0.6s ease 0s, opacity 1.6s ease 0s;
-}
-.anim-move-top._watcher-view {
-  opacity: 1;
-  transform: translate(0px, 0px);
-}
-
 .header {
   background-color: #fff;
   position: fixed;
@@ -988,6 +933,7 @@ body::after {
 .middle-header__logo {
   align-self: center;
   flex: 1 1 auto;
+  min-height: 64px;
 }
 .middle-header__logo img {
   width: 100%;
@@ -1141,13 +1087,13 @@ body::after {
 }
 
 .header-search__tel {
-  display: block;
-  height: 48px;
-  background-color: #fff;
+  display: none;
 }
-@media (min-width: 47.99875em) {
+@media (max-width: 47.99875em) {
   .header-search__tel {
-    display: none;
+    display: block;
+    height: 48px;
+    background-color: #fff;
   }
 }
 
@@ -1158,8 +1104,9 @@ body::after {
   position: absolute;
   top: 0;
   right: 0;
-  height: 40px;
-  width: 40px;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #25529f;
   z-index: 15;
   border-radius: 31px;
   background-repeat: no-repeat;
@@ -1167,15 +1114,17 @@ body::after {
   background-size: 50%;
   background-position: center;
 }
-@media (min-width: 47.99875em) {
+@media (max-width: 47.99875em) {
   .search-header__button {
-    width: 25px;
-    height: 25px;
-    border: 1px solid #25529f;
+    height: 40px;
+    width: 40px;
+    border: none;
   }
 }
 .search-header__input {
-  width: 100%;
+  width: 25px;
+  height: 25px;
+  opacity: 0;
   right: 0;
   top: 0;
   border: 1px solid #25529f;
@@ -1187,11 +1136,11 @@ body::after {
   transition: all 0.6s ease;
   position: relative;
 }
-@media (min-width: 47.99875em) {
+@media (max-width: 47.99875em) {
   .search-header__input {
-    width: 25px;
-    height: 25px;
-    opacity: 0;
+    width: 100%;
+    height: 40px;
+    opacity: 1;
   }
 }
 @media (max-width: 47.99875em) {
@@ -1983,6 +1932,7 @@ html.touch .menu__list > li.active .menu__sub-list-wrap {
 .members {
   background-color: #ecf3ff;
   padding: 1.5rem 0;
+  position: relative;
 }
 .members__title {
   text-align: center;
@@ -1998,23 +1948,15 @@ html.touch .menu__list > li.active .menu__sub-list-wrap {
     margin-bottom: 40px;
   }
 }
-.members__body {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 15px;
-}
-@media (max-width: 29.99875em) {
-  .members__body {
-    flex-direction: column;
-    gap: 30px;
-  }
-}
 .members__image img {
-  width: 100%;
   max-width: 300px;
-  object-fit: contain;
+  max-height: 65px;
+  object-fit: cover;
+}
+@media (max-width: 47.99875em) {
+  .members__image img {
+    max-width: 110px;
+  }
 }
 
 .last-news__title {
@@ -2262,6 +2204,44 @@ html.touch .menu__list > li.active .menu__sub-list-wrap {
 
 .last-news-top .all-news__item:first-child {
   padding-top: 0;
+}
+
+.members ul {
+  padding: 1.25rem 0;
+  position: relative;
+  min-height: 140px;
+}
+@media (max-width: 47.99875em) {
+  .members ul {
+    min-height: 100px;
+    width: 200%;
+  }
+}
+.members ul > li {
+  width: 25%;
+  list-style-type: none;
+  position: absolute;
+  top: 0;
+  padding: 20px;
+  opacity: 0;
+  padding-top: 40px;
+  text-align: center;
+  transition: 1s opacity;
+}
+.members .active {
+  opacity: 1;
+}
+.members p {
+  font-family: sans-serif;
+  font-size: 13px;
+  color: #646566;
+  line-height: 1.5em;
+}
+.members strong {
+  color: #fff;
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 100px;
 }
 
 .contacts-route {

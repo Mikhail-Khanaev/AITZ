@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20220212104936">
+	<link rel="stylesheet" href="css/style.min.css?_v=20220212161858">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -82,7 +82,7 @@
 												<li><a href="about__how-we-are-work.html" class="menu__sub-link">Как мы
 														работаем</a>
 												</li>
-												<li><a href="about__how-we-are-work.html#committees__top" data-goto-top="100" class="menu__sub-link">Комитеты</a>
+												<li><a href="about__how-we-are-work.html#committees__top" class="menu__sub-link">Комитеты</a>
 												</li>
 												<li><a href="participants-1.html" class="menu__sub-link">Наши члены</a></li>
 												<li><a href="partners.html" class="menu__sub-link">Наши партнеры</a></li>
@@ -239,6 +239,27 @@
 							<div data-watch data-watch-once class="members__card anim-move-bottom">
 								<div class="members__image">
 									<img src="img/logo.svg" alt="5">
+								</div>
+							</div>
+						</li>
+						<li>
+							<div data-watch data-watch-once class="members__card anim-move-bottom">
+								<div class="members__image">
+									<picture><source srcset="img/main/brands/3.webp" type="image/webp"><img src="img/main/brands/3.png" alt="5"></picture>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div data-watch data-watch-once class="members__card anim-move-bottom">
+								<div class="members__image">
+									<picture><source srcset="img/main/brands/2.webp" type="image/webp"><img src="img/main/brands/2.png" alt="5"></picture>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div data-watch data-watch-once class="members__card anim-move-bottom">
+								<div class="members__image">
+									<picture><source srcset="img/main/brands/1.webp" type="image/webp"><img src="img/main/brands/1.png" alt="5"></picture>
 								</div>
 							</div>
 						</li>
@@ -635,8 +656,8 @@
 			</div>
 		</div>
 	</div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js?_v=20220212104936"></script>
-	<script src="js/app.min.js?_v=20220212104936"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js?_v=20220212161858"></script>
+	<script src="js/app.min.js?_v=20220212161858"></script>
 	<script>
 		var timer = 4000;
 
@@ -656,6 +677,10 @@
 			.eq(i + 3)
 			.addClass("active")
 			.css("left", "75%");
+		$("#c > li")
+			.eq(i + 4)
+			.addClass("active")
+			.css("left", "100%");
 
 		setInterval(function() {
 			$("#c > li").removeClass("active");
@@ -670,9 +695,12 @@
 			$("#c > li")
 				.eq(i + 3)
 				.css("transition-delay", "1s");
+			$("#c > li")
+				.eq(i + 4)
+				.css("transition-delay", "1.25s");
 
-			if (i < max - 4) {
-				i = i + 4;
+			if (i < max - 5) {
+				i = i + 5;
 			} else {
 				i = 0;
 			}
@@ -697,6 +725,11 @@
 				.css("left", "75%")
 				.addClass("active")
 				.css("transition-delay", "2s");
+			$("#c > li")
+				.eq(i + 4)
+				.css("left", "100%")
+				.addClass("active")
+				.css("transition-delay", "2.25s");
 		}, timer);
 	</script>
 </body>

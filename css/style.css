@@ -2207,11 +2207,22 @@ html.touch .menu__list > li.active .menu__sub-list-wrap {
 }
 
 .members ul {
-  padding: 1.25rem 0;
+  padding: 1.25rem;
   position: relative;
   min-height: 140px;
+  left: -10%;
 }
 @media (max-width: 47.99875em) {
+  .members ul {
+    left: 0;
+  }
+}
+@media (max-width: 81.25em) {
+  .members ul {
+    width: 120%;
+  }
+}
+@media (max-width: 50em) {
   .members ul {
     min-height: 100px;
     width: 200%;
@@ -2227,6 +2238,7 @@ html.touch .menu__list > li.active .menu__sub-list-wrap {
   padding-top: 40px;
   text-align: center;
   transition: 1s opacity;
+  display: block;
 }
 .members .active {
   opacity: 1;

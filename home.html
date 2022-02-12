@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20220212103356">
+	<link rel="stylesheet" href="css/style.min.css?_v=20220212104936">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -82,7 +82,7 @@
 												<li><a href="about__how-we-are-work.html" class="menu__sub-link">Как мы
 														работаем</a>
 												</li>
-												<li><a href="about__how-we-are-work.html" class="menu__sub-link">Комитеты</a>
+												<li><a href="about__how-we-are-work.html#committees__top" data-goto-top="100" class="menu__sub-link">Комитеты</a>
 												</li>
 												<li><a href="participants-1.html" class="menu__sub-link">Наши члены</a></li>
 												<li><a href="partners.html" class="menu__sub-link">Наши партнеры</a></li>
@@ -635,9 +635,70 @@
 			</div>
 		</div>
 	</div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js?_v=20220212103356"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js?_v=20220212104936"></script>
+	<script src="js/app.min.js?_v=20220212104936"></script>
+	<script>
+		var timer = 4000;
 
-	<script src="js/app.min.js?_v=20220212103356"></script>
+		var i = 0;
+		var max = $("#c > li").length;
+
+		$("#c > li").eq(i).addClass("active").css("left", "0");
+		$("#c > li")
+			.eq(i + 1)
+			.addClass("active")
+			.css("left", "25%");
+		$("#c > li")
+			.eq(i + 2)
+			.addClass("active")
+			.css("left", "50%");
+		$("#c > li")
+			.eq(i + 3)
+			.addClass("active")
+			.css("left", "75%");
+
+		setInterval(function() {
+			$("#c > li").removeClass("active");
+
+			$("#c > li").eq(i).css("transition-delay", "0.25s");
+			$("#c > li")
+				.eq(i + 1)
+				.css("transition-delay", "0.5s");
+			$("#c > li")
+				.eq(i + 2)
+				.css("transition-delay", "0.75s");
+			$("#c > li")
+				.eq(i + 3)
+				.css("transition-delay", "1s");
+
+			if (i < max - 4) {
+				i = i + 4;
+			} else {
+				i = 0;
+			}
+
+			$("#c > li")
+				.eq(i)
+				.css("left", "0")
+				.addClass("active")
+				.css("transition-delay", "1.25s");
+			$("#c > li")
+				.eq(i + 1)
+				.css("left", "25%")
+				.addClass("active")
+				.css("transition-delay", "1.5s");
+			$("#c > li")
+				.eq(i + 2)
+				.css("left", "50%")
+				.addClass("active")
+				.css("transition-delay", "1.75s");
+			$("#c > li")
+				.eq(i + 3)
+				.css("left", "75%")
+				.addClass("active")
+				.css("transition-delay", "2s");
+		}, timer);
+	</script>
 </body>
 
 </html>
